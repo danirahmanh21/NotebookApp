@@ -1,12 +1,12 @@
 body{
     margin: 0;
     padding: 0;
-    min-height: 100vh; /* Ensure body can expand as needed */
+    min-height: 100vh; 
     background-color: #E4E0E1;
     display: flex;
     justify-content: center;
-    align-items: flex-start; /* Start at the top */
-    padding-top: 20px; /* Add padding for spacing from top */
+    align-items: flex-start; 
+    padding-top: 20px; 
     box-sizing: border-box;
 }
 
@@ -40,7 +40,7 @@ h2{
     background-repeat: no-repeat;
     border-radius: 10px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    min-height: 100%; /* Ensure it stretches with content */
+    min-height: 100%; 
     box-sizing: border-box;
 }
 .note-app-header{
@@ -126,7 +126,7 @@ h2{
 }
   
 .note-item:hover {
-    transform: scale(1.05); /* Slight zoom effect on hover */
+    transform: scale(1.05); 
 }
 
 .note-item__container {
