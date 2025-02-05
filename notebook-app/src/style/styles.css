@@ -2,12 +2,53 @@ body{
     margin: 0;
     padding: 0;
     min-height: 100vh; 
-    background-color: #E4E0E1;
+    background-color: #EFE8DD;
     display: flex;
     justify-content: center;
     align-items: flex-start; 
     padding-top: 20px; 
     box-sizing: border-box;
+}
+
+.navigation{
+    width: 100%;
+    background-color: #AB886D;
+    padding: 10px 20px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    display:flex ;
+    border-radius: 10px;
+    justify-content: center;
+    box-sizing: border-box;
+    margin-bottom: 20px;
+}
+
+.navigation ul{
+    list-style: none;
+    display: flex;
+    gap: 15px;
+}
+
+.navigation li{
+    font-family: 'Patrick Hand',cursive;
+    font-size: 25px;
+    font-weight: bold;
+}
+
+.navigation a {
+    text-decoration: none;
+    color: #333; 
+    padding: 8px 12px;
+    border-radius: 5px;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.navigation a:hover {
+    background-color: #007bff;
+    color: #fff;
+}
+
+.navigation a:active {
+    background-color: #0056b3;
 }
 
 h1{
@@ -33,14 +74,14 @@ h2{
     width: 100%;
     max-width: 900px;
     padding: 20px;
-    background-image: url('/public/Images/bgtes1.jpg');
+    background-image: url('/Images/bgtes1.jpg');
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
     background-repeat: no-repeat;
     border-radius: 10px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    min-height: 100%; 
+    min-height: 100%; /* Ensure it stretches with content */
     box-sizing: border-box;
 }
 .note-app-header{
@@ -107,7 +148,7 @@ h2{
     position: relative;
     width: 300px;
     padding: 20px;
-    background: url('/public/Images/paper-bg.png') no-repeat center/cover;
+    background: url('/Images/paper-bg.png') no-repeat center/cover;
     margin: 20px;
     font-family: cursive,sans-serif;
 }
@@ -120,7 +161,7 @@ h2{
     transform: translateX(-50%);
     width: 30px;
     height: 30px;
-    background: url('/public/Images/pin.png') no-repeat center/contain;
+    background: url('/Images/pin.png') no-repeat center/contain;
     z-index: 10;
     display: block;
 }
@@ -147,7 +188,7 @@ h2{
     color: #555;
 }
 
-.contact-item__delete {
+.note-item__delete {
     background-color: #ff6b6b;
     color: white;
     border: none;
@@ -163,13 +204,53 @@ h2{
     transition: background-color 0.2s, transform 0.2s;
 }
 
-.contact-item__delete:hover{
+.note-item__delete:hover{
     background-color: #ff4c4c;
     transform: scale(1.1);
 }
 
-.contact-item__delete:active{
+.note-item__delete:active{
     transform: scale(1);
+}
+
+.note-item__archive {
+    background-color: #e4df52;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    font-size: 16px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    transition: background-color 0.2s, transform 0.2s;
+}
+
+.note-item__archive:hover{
+    background-color: #eee60a;
+    transform: scale(1.1);
+}
+
+.note-item__archive:active{
+    transform: scale(1);
+}
+
+.note-detail__actions{
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+}
+
+.note-detail__actions button {
+    flex: 1;
+    padding: 10px;
+    text-align: center;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
 }
 
 .search-bar {
@@ -193,6 +274,21 @@ h2{
     box-sizing: border-box;;
 }
 
+.not-found {
+    text-align: center;
+    margin-top: 50px;
+}
+
+.not-found h1{
+    font-size: 5rem;
+    color: #ff6b6b;
+}
+
+.not-found p{
+    font-size: 1.5rem;
+    color: #333;
+}
+
 @media (max-width: 480px) {
     h1 {
         font-size: 2rem;
@@ -208,5 +304,18 @@ h2{
 
     .note-item {
         padding: 10px;
+    }
+    .navigation {
+        padding: 10px;
+    }
+
+    .navigation ul {
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .navigation li {
+        font-size: 16px;
     }
 }

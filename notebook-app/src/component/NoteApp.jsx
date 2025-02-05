@@ -1,65 +1,32 @@
+/* eslint-disable no-unused-vars */
 import React from "react";
-import NoteInput from "./NoteInput";
-import {getInitialData, showFormattedDate} from "../utils/index";
-import NoteList from "./NoteList";
-import SearchBar from "./SearchBar";
+import Navigation from "./Navigation";
+import HomePage from "../pages/HomePage";
+import AddPage from "../pages/AddPages";
+import { Route, Routes } from "react-router-dom";
+import ArchivedPage from "../pages/ArchivedPages";
+import DetailPageWrapper from "../pages/DetailPage";
+import NotFoundPage from "../pages/NotFoundPage";
 
-class NoteApp extends React.Component{
-    constructor(props){
-        super(props);
-        this.state ={
-            notes : getInitialData(),
-            searchQuery:"",
-        }
-        this.onDeleteHandler = this.onDeleteHandler.bind(this);
-        this.onAddNoteHandler = this.onAddNoteHandler.bind(this);
-        this.onSearchHandle = this.onSearchHandle.bind(this);
-    }
-
-    onDeleteHandler(id){
-        const notes = this.state.notes.filter(note => note.id !== id);
-        this.setState({notes});
-    }
-
-    onAddNoteHandler({title,body}){
-        const currentDate = showFormattedDate(new Date());
-        this.setState((prevState)=>{
-            return{
-                notes:[
-                    ...prevState.notes,
-                    {
-                        id: +new Date(),
-                        title,
-                        body,
-                        createdAt: currentDate,
-                        archived: false,
-                    }
-                ]
-            }
-        });
-    }
-
-    onSearchHandle(query){
-        this.setState({searchQuery: query});
-    }
-    
-    render(){
-        const filteredNotes = this.state.notes.filter((note)=>note.title.toLocaleLowerCase().includes(this.state.searchQuery.toLocaleLowerCase()));
-        return(
-            <div className="note-app">
-                <div className="note-app-header">
+function NoteApp() {
+    return (
+        <div className="note-app">
+            <header  className="note-app__header">
                 <h1>Aplikasi Catatan</h1>
-                <h2>Tambah Catatan</h2>
-                <NoteInput addNote={this.onAddNoteHandler}/>
-                <h2>Cari Catatan</h2>
-                <SearchBar onSearch={this.onSearchHandle}/>
-                <h2>Daftar Catatan</h2>
-                <NoteList notes={filteredNotes} onDelete={this.onDeleteHandler}/>
-                </div>
-            </div>
-        )
-    }
-
+                <Navigation />
+            </header>
+            <main>
+                <Routes>
+                    <Route path="/" element={<HomePage />} />
+                    <Route path="/add" element={<AddPage />} />
+                    <Route path="/archived" element = {<ArchivedPage />} />
+                    <Route path="/notes/:id" element={<DetailPageWrapper />} />
+                    <Route path="*" element={<NotFoundPage />}/>
+                </Routes>
+            </main>
+        </div>
+    );
 }
+
 
 export default NoteApp;

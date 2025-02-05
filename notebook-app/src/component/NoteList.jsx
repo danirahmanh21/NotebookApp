@@ -1,7 +1,9 @@
+/* eslint-disable no-unused-vars */
 import React from "react";
 import NoteItem from "./NoteItem";
+import PropTypes from "prop-types";
 
-function NoteList({notes,onDelete}){
+function NoteList({notes,onDelete,onArchive}){
     return(
         <div className="note-list">
             {notes.length === 0 ? (
@@ -16,6 +18,7 @@ function NoteList({notes,onDelete}){
                     createdAt={note.createdAt}
                     archived={note.archived}
                     onDelete={onDelete}
+                    onArchive={onArchive}
                     {...note}
                     />
                 ))
@@ -23,5 +26,12 @@ function NoteList({notes,onDelete}){
         </div>
     );
 }
+
+NoteList.propTypes = {
+    notes : PropTypes.arrayOf(PropTypes.object).isRequired,
+    onDelete : PropTypes.func.isRequired,
+    onArchive : PropTypes.func,
+}
+
 
 export default NoteList;

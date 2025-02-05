@@ -1,5 +1,7 @@
+/* eslint-disable react/prop-types */
 import React from "react";
 import { showFormattedDate } from "../utils";
+import PropTypes from "prop-types";
 
 class NoteInput extends React.Component{
     constructor(props){
@@ -30,20 +32,23 @@ class NoteInput extends React.Component{
             }
         });
     }
-    onSubmitEventHandler(e){
+    onSubmitEventHandler(e) {
         e.preventDefault();
-        const currentDate = showFormattedDate(new Date());
+
+        const { id } = this.props.initialData || {}; 
         const newNote = {
-            id: Date.now(),
+            id: id || Date.now(),
             title: this.state.title,
             body: this.state.body,
-            createdAt: currentDate,
-            archived: false,
-        }
-        this.props.addNote(newNote);
+            createdAt: id ? this.props.initialData.createdAt : showFormattedDate(new Date()),
+            archived: id ? this.props.initialData.archived : false, 
+        };
+
+        this.props.addNote(newNote); 
         this.setState({
-            title:'',
-            body:'',
+            title: '',
+            body: '',
+            remainingCharacters: 50,
         });
     }
     render() {
@@ -56,6 +61,17 @@ class NoteInput extends React.Component{
              </form>
         );
     }
+}
+
+NoteInput.propType = {
+    addNote : PropTypes.func.isRequired,
+    initialData : PropTypes.shape({
+        id: PropTypes.string,
+        title: PropTypes.string,
+        body: PropTypes.string,
+        createdAt : PropTypes.string,
+        archived: PropTypes.bool,
+    })
 }
 
 export default NoteInput;
